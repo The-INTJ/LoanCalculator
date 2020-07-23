@@ -5,28 +5,38 @@
 }
 
 <h2>Calculate Your Interest</h2>
+<style>
+    label {
+        text-align: center;
+        display: block;
+    }
+</style>
 
-@using (Html.BeginForm("Calculate", "Loan")) {
-<div class="btn-group-vertical form-group">
-    @Html.TextBoxFor(m => m.Amount, new
+@using (Html.BeginForm("Calculate", "Loan"))
 {
-   @class = "form-control",
-   placeholder = @Html.DisplayNameFor(m => m.Amount)
-})
+    <div class="btn-group-vertical form-group">
+        @Html.TextBoxFor(m => m.Amount, new
+   {
+       @class = "form-control",
+       placeholder = @Html.DisplayNameFor(m => m.Amount),
+       @id = "reactive-1"
+   })
 
-    <br />
+        <br />
 
-    @Html.TextBoxFor(m => m.Percentage, new
-{
-   @class = "form-control",
-   placeholder = @Html.DisplayNameFor(m => m.Percentage)
-})
+        @Html.TextBoxFor(m => m.Percentage, new
+    {
+       @class = "form-control",
+       placeholder = @Html.DisplayNameFor(m => m.Percentage),
+       @id = "reactive-2"
+    })
 
-</div>
+    </div>
 
     <hr />
     <div class="btn-group-vertical form-group">
 
+        <label>Loan Length</label>
         <button disabled class="form-control">Year 1</button>
         <br />
         <button disabled class="form-control">Year 2</button>
@@ -38,14 +48,16 @@
         <button disabled class="form-control">Year 5</button>
     </div>
 
-    
 
-    <div class="btn-group-vertical form-group">
+
+    <div class="btn-group-vertical form-group" id="modify">
         <label>Monthly Payment</label>
         @Html.TextBoxFor(m => m.months[0], new
         {
             @class = "form-control",
-            placeholder = @Html.DisplayName("Amount")
+            placeholder = @Html.DisplayName("Amount"),
+            disabled = "disabled",
+            style = " text-align:right"
         })
 
         <br />
@@ -53,7 +65,9 @@
         @Html.TextBoxFor(m => m.months[1], new
         {
             @class = "form-control",
-            placeholder = @Html.DisplayName("Amount")
+            placeholder = @Html.DisplayName("Amount"),
+            disabled = "disabled",
+            style = " text-align:right"
         })
 
         <br />
@@ -61,7 +75,9 @@
         @Html.TextBoxFor(m => m.months[2], new
         {
             @class = "form-control",
-            placeholder = @Html.DisplayName("Amount")
+            placeholder = @Html.DisplayName("Amount"),
+            disabled = "disabled",
+            style = " text-align:right"
         })
 
         <br />
@@ -69,7 +85,9 @@
         @Html.TextBoxFor(m => m.months[3], new
         {
             @class = "form-control",
-            placeholder = @Html.DisplayName("Amount")
+            placeholder = @Html.DisplayName("Amount"),
+            disabled = "disabled",
+            style = " text-align:right"
         })
 
         <br />
@@ -77,21 +95,25 @@
         @Html.TextBoxFor(m => m.months[4], new
         {
             @class = "form-control",
-            placeholder = @Html.DisplayName("Amount")
+            placeholder = @Html.DisplayName("Amount"),
+            disabled = "disabled",
+            style = " text-align:right"
         })
 
 
     </div>
-    
 
 
-    <div class="btn-group-vertical form-group">
+
+    <div class="btn-group-vertical form-group" id="modify">
 
         <label style="text-align: center">Loan Total</label>
         @Html.TextBoxFor(m => m.loanTotals[0], new
         {
             @class = "form-control",
-            placeholder = @Html.DisplayName("Amount")
+            placeholder = @Html.DisplayName("Amount"),
+            disabled = "disabled",
+            style = "text-align:right"
         })
 
         <br />
@@ -99,7 +121,9 @@
         @Html.TextBoxFor(m => m.loanTotals[1], new
         {
             @class = "form-control",
-            placeholder = @Html.DisplayName("Amount")
+            placeholder = @Html.DisplayName("Amount"),
+            disabled = "disabled",
+            style = " text-align:right"
         })
 
         <br />
@@ -107,7 +131,9 @@
         @Html.TextBoxFor(m => m.loanTotals[2], new
         {
             @class = "form-control",
-            placeholder = @Html.DisplayName("Amount")
+            placeholder = @Html.DisplayName("Amount"),
+            disabled = "disabled",
+            style = " text-align:right"
         })
 
         <br />
@@ -115,7 +141,9 @@
         @Html.TextBoxFor(m => m.loanTotals[3], new
         {
             @class = "form-control",
-            placeholder = @Html.DisplayName("Amount")
+            placeholder = @Html.DisplayName("Amount"),
+            disabled = "disabled",
+            style = " text-align:right"
         })
 
         <br />
@@ -123,15 +151,23 @@
         @Html.TextBoxFor(m => m.loanTotals[4], new
         {
             @class = "form-control",
-            placeholder = @Html.DisplayName("Amount")
+            placeholder = @Html.DisplayName("Amount"),
+            disabled = "disabled",
+            style = " text-align:right"
         })
 
 
     </div>
 
-    <hr/>
+    <hr />
 
     <button type="submit" class="btn btn-primary">Calculate</button>
-    <button type="submit" class="btn btn-warning">Clear</button>
+    <button type="submit" class="btn btn-warning">@Html.ActionLink("Clear", "Clear", "Loan")</button>
 
+}
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/custom")
+    @Scripts.Render("~/bundles/jqueryval")
 }

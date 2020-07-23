@@ -14,10 +14,11 @@ namespace FabrikamAspPrac1
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Loan Page",
+                name: "Calculate",
                 url: "Loan/LoanRateCalculator",
                 new {controller = "Loan", action = "LoanRateCalculator"}
                 );
+
 
             routes.MapRoute(
                 name: "Default",

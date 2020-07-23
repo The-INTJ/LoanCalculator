@@ -24,5 +24,17 @@ namespace FabrikamAspPrac1.Controllers
             return View("LoanRateCalculator", loan);
         }
 
+        public ActionResult Clear(Loan loan)
+        {
+            loan.Amount = 0;
+            loan.Percentage = 0;
+            for (var i = 0; i < 5; i++)
+            {
+                loan.months[i] = 0;
+                loan.loanTotals[i] = 0;
+            }
+            return View("LoanRateCalculator", loan);
+        }
+
     }
 }
